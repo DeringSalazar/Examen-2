@@ -4,24 +4,18 @@
  */
 package Modelo.Asistente;
 
-public class Asistente {
+public class AsistenteDTO {
     String cedula;
     String nombre;
     String telefono;
     String correo;
 
-    public Asistente(String cedula, String nombre, String telefono, String correo) {
+    public AsistenteDTO(String cedula, String nombre, String telefono, String correo) {
         this.cedula = cedula;
         this.nombre = nombre;
         this.telefono = telefono;
         this.correo = correo;
     }
-
-    public Asistente(String nombre) {
-        this.nombre = nombre;
-    }
-    
-    
 
     public String getCedula() {
         return cedula;
