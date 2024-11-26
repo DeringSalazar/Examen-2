@@ -24,10 +24,10 @@ public class EventoController {
         return evento.getCapacidad();
     }
     
-    public void inscribirse(){
+    public boolean inscribirse(Evento evento, Inscripción inscripcion){
         evento.setCapacidad(evento.getCapacidad()-1);
+        inscripcion.setAsistencia(true);
+        return true;
     }
-    
-    public boolean set
     
 }
