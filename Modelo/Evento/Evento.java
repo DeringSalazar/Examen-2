@@ -21,6 +21,10 @@ public class Evento {
         this.capacidad = capacidad;
     }
 
+    public void setCapacidad(int capacidad) {
+        this.capacidad = capacidad;
+    }
+
     public int getId() {
         return id;
     }
