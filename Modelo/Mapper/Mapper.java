@@ -5,5 +5,6 @@
 package Modelo.Mapper;
 
 public interface Mapper<Entity, Dto> {
-    
+    public Dto toDto(Entity ent);
+    public Entity toEntity(Dto dto);
 }
