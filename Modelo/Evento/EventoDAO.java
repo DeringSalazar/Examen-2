@@ -17,7 +17,7 @@ public class EventoDAO extends DAOCUD <EventoDTO>{
 
     @Override
     public EventoDTO read(Object id) throws SQLException {
-        stmt = connection.prepareStatement("Call EventosRead()");
+        stmt = connection.prepareStatement("Call EventosRead(?)");
         stmt.setInt(1, Integer.parseInt(String.valueOf(id)));
         rs = stmt.executeQuery();
         if (rs.next()) {
