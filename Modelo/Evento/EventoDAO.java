@@ -8,6 +8,6 @@ package Modelo.Evento;
  *
  * @author Student
  */
-public class EventoManager {
+public class EventoDAO {
     
 }
