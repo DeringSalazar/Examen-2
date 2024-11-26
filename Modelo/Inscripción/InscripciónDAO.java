@@ -29,6 +29,17 @@ public class InscripciónDAO extends DaoCRUD<InscripciónDTO> {
     @Override
     public InscripciónDTO read(Object id) throws SQLException {
         stmt = connection.prepareStatement("Call ReadInscripcion(?)");
+        stmt.setInt(1, Integer.parseInt(String.valueOf(id)));
+        rs = stmt.executeQuery();
+        if (rs.next()){
+            return new InscripciónDTO(
+                    rs.getInt(1),
+                    rs.getInt(2),
+                    rs.getString(3),
+                    rs.getDate(4),
+                    rs.getBoolean(5)
+            );
+        }
         return null; 
     }
 

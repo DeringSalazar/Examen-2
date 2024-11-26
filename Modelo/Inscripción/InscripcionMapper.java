@@ -4,6 +4,7 @@
  */
 package Modelo.Inscripción;
 
+import Database.Database;
 import Modelo.Mapper.Mapper;
 import UtilDate.UtilDate;
 
@@ -26,8 +27,8 @@ public class InscripcionMapper implements Mapper<Inscripción, InscripciónDTO>{
         if (dto == null) return null;
         return new Inscripción(
                     dto.getId(),
-                    new InscripcionMapper().toEntity(new InscripciónDAO(DataBase.getConnection()).read(dto.getEvento())),
-                    dto.getAsistente(),
+                    new InscripcionMapper().toEntity(new InscripciónDAO(Database.getConnection()).read(dto.getEvento())),
+                    new InscripcionMapper().toEntity(new InscripciónDAO(Database.getConnection()).read(dto.getAsistente())),
                     UtilDate.tolocalDate(dto.getFecha()),
                     dto.isAsistencia()
         );
