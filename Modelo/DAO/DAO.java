@@ -7,6 +7,7 @@ package Modelo.DAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 public abstract class DAO<Dto> {
@@ -19,5 +20,9 @@ public abstract class DAO<Dto> {
         this.connection = connection;
     }
     
-    public void create()
+    public abstract boolean create(Dto dto) throws SQLException;
+    public abstract boolean read(Object id) throws SQLException;
+    public abstract List<Dto> readAll() throws SQLException;
+    public abstract boolean Update(Dto dto) throws SQLException;
+    public abstract boolean Delete(Object id) throws SQLException;
 }
