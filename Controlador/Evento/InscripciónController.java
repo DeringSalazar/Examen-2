@@ -4,9 +4,20 @@
  */
 package Controlador.Evento;
 
+import Modelo.Inscripción.InscripcionMapper;
 import Modelo.Inscripción.InscripciónDAO;
+import Vistas.Vista;
 
 public class InscripciónController {
-    InscripciónDAO dao;
+    private InscripciónDAO dao;
+    private Vista vista;
+    private InscripcionMapper mapper;
+
+    public InscripciónController(Vista vista) {
+        this.vista = vista;
+        mapper = new InscripcionMapper();
+        
+    }
+    
     
 }
