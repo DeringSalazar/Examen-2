@@ -5,6 +5,7 @@
 package Modelo.Evento;
 
 import Modelo.DAO.DAOCUD;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +15,10 @@ import java.util.List;
  * @author Student
  */
 public class EventoDAO extends DAOCUD <EventoDTO>{
+
+    public EventoDAO(Connection connection) {
+        super(connection);
+    }
 
     @Override
     public EventoDTO read(Object id) throws SQLException {

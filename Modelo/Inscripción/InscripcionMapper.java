@@ -5,8 +5,15 @@
 package Modelo.Inscripción;
 
 import Database.Database;
+import Modelo.Asistente.AsistenteDAO;
+import Modelo.Asistente.AsistenteMapper;
+import Modelo.Evento.EventoDAO;
+import Modelo.Evento.EventoMapper;
 import Modelo.Mapper.Mapper;
 import UtilDate.UtilDate;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class InscripcionMapper implements Mapper<Inscripción, InscripciónDTO>{
 
@@ -24,13 +31,20 @@ public class InscripcionMapper implements Mapper<Inscripción, InscripciónDTO>{
 
     @Override
     public Inscripción toEntity(InscripciónDTO dto) {
-        if (dto == null) return null;
-        return new Inscripción(
+        try {
+            if (dto == null) return null;
+            return new Inscripción(
                     dto.getId(),
-                    new InscripcionMapper().toEntity(new InscripciónDAO(Database.getConnection()).read(dto.getEvento())),
-                    new InscripcionMapper().toEntity(new InscripciónDAO(Database.getConnection()).read(dto.getAsistente())),
+                    new EventoMapper().toEntity(new EventoDAO(Database.getConnection()).read(dto.getEvento())),
+                    new AsistenteMapper().toEntity(new AsistenteDAO(Database.getConnection()).read(dto.getAsistente())),
                     UtilDate.tolocalDate(dto.getFecha()),
                     dto.isAsistencia()
-        );
+            );
+        } catch (SQLException ex) {
+            Logger.getLogger(InscripcionMapper.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(InscripcionMapper.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 }

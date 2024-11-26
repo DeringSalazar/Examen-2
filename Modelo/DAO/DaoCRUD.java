@@ -4,25 +4,17 @@
  */
 package Modelo.DAO;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
+import java.sql.Connection;
 
-public abstract class DaoCRUD<Dto> {
-    protected Connection connection;
-    protected PreparedStatement stmt;
-    protected ResultSet rs;
-    List<Dto> dtos;  
-    
+
+public abstract class DaoCRUD<Dto> extends DAOCUD<Dto>{ 
+
     public DaoCRUD(Connection connection) {
-        this.connection = connection;
+        super(connection);
     }
     
     public abstract boolean create(Dto dto) throws SQLException;
-    public abstract Dto read(Object id) throws SQLException;
-    public abstract List<Dto> readAll() throws SQLException;
     public abstract boolean Update(Dto dto) throws SQLException;
     public abstract boolean Delete(Object id) throws SQLException;
 }
