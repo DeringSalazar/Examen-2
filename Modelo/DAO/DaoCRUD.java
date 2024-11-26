@@ -10,13 +10,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-public abstract class DAO<Dto> {
+public abstract class DaoCRUD<Dto> {
     protected Connection connection;
     protected PreparedStatement stmt;
     protected ResultSet rs;
-    List<Dto> dtos;
-
-    public DAO(Connection connection) {
+    List<Dto> dtos;  
+    
+    public DaoCRUD(Connection connection) {
         this.connection = connection;
     }
     

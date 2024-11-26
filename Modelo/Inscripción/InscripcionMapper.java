@@ -14,8 +14,8 @@ public class InscripcionMapper implements Mapper<Inscripción, InscripciónDTO>{
         if (ent == null) return null;
         return new InscripciónDTO(
                     ent.getId(),
-                    ent.getEvento(),
-                    ent.getAsistente(),
+                    ent.getEvento().getId(),
+                    ent.getAsistente().getCedula(),
                     UtilDate.tosqlDate(ent.getFecha()),
                     ent.isAsistencia()
         );
@@ -26,7 +26,7 @@ public class InscripcionMapper implements Mapper<Inscripción, InscripciónDTO>{
         if (dto == null) return null;
         return new Inscripción(
                     dto.getId(),
-                    dto.getEvento(),
+                    new InscripcionMapper().toEntity(new InscripciónDAO(DataBase.getConnection()).read(dto.getEvento())),
                     dto.getAsistente(),
                     UtilDate.tolocalDate(dto.getFecha()),
                     dto.isAsistencia()

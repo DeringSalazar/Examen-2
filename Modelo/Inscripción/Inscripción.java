@@ -42,6 +42,8 @@ public class Inscripción {
     public boolean isAsistencia() {
         return asistencia;
     }
-    
-    
+
+    public void setAsistencia(boolean asistencia) {
+        this.asistencia = asistencia;
+    }
 }

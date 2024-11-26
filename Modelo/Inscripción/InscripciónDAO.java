@@ -4,13 +4,13 @@
  */
 package Modelo.Inscripción;
 
-import Modelo.DAO.DAO;
+import Modelo.DAO.DaoCRUD;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class InscripciónDAO extends DAO<InscripciónDTO> {
+public class InscripciónDAO extends DaoCRUD<InscripciónDTO> {
 
     public InscripciónDAO(Connection connection) {
         super(connection);
@@ -19,7 +19,7 @@ public class InscripciónDAO extends DAO<InscripciónDTO> {
     @Override
     public boolean create(InscripciónDTO dto) throws SQLException {
         stmt = connection.prepareStatement("Call InsertarInscripcion(?, ?, ?, ?)");
-        stmt.setString(1, dto.getEvento());
+        stmt.setInt(1, dto.getEvento());
         stmt.setString(2, dto.getAsistente());
         stmt.setDate(3, dto.getFecha());
         stmt.setBoolean(4, dto.isAsistencia());
@@ -27,8 +27,9 @@ public class InscripciónDAO extends DAO<InscripciónDTO> {
     }
 
     @Override
-    public boolean read(Object id) throws SQLException {
+    public InscripciónDTO read(Object id) throws SQLException {
         stmt = connection.prepareStatement("Call ReadInscripcion(?)");
+        return null; 
     }
 
     @Override
@@ -39,22 +40,28 @@ public class InscripciónDAO extends DAO<InscripciónDTO> {
         while (rs.next()) {
             dtos.add(new InscripciónDTO(
                     rs.getInt(1),
-                    rs.getString(2),
+                    rs.getInt(2),
                     rs.getString(3),
                     rs.getDate(4),
                     rs.getBoolean(5)
             ));
         }
+        return dtos;
     }
 
     @Override
     public boolean Update(InscripciónDTO dto) throws SQLException {
-        
+        stmt = connection.prepareStatement("Call UpdateInscripcion(?, ?)");
+        stmt.setInt(1, dto.getId());
+        stmt.setBoolean(2, dto.isAsistencia());
+        return stmt.executeUpdate()>0;
     }
 
     @Override
     public boolean Delete(Object id) throws SQLException {
-        
+        stmt = connection.prepareStatement("Call DeleteInscripcion(?)");
+        stmt.setInt(1, Integer.parseInt(String.valueOf(id)));
+        return stmt.executeUpdate()>0;
     }
     
 }

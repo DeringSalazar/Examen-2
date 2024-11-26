@@ -8,12 +8,12 @@ import java.sql.Date;
 
 public class InscripciónDTO {
     int id;
-    private String evento;
+    private int evento;
     private String asistente;
     Date fecha;
     boolean asistencia;
 
-    public InscripciónDTO(int id, String evento, String asistente, Date fecha, boolean asistencia) {
+    public InscripciónDTO(int id, int evento, String asistente, Date fecha, boolean asistencia) {
         this.id = id;
         this.evento = evento;
         this.asistente = asistente;
@@ -25,7 +25,7 @@ public class InscripciónDTO {
         return id;
     }
 
-    public String getEvento() {
+    public int getEvento() {
         return evento;
     }
 
