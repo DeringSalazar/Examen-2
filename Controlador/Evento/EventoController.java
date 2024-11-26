@@ -28,4 +28,6 @@ public class EventoController {
         evento.setCapacidad(evento.getCapacidad()-1);
     }
     
+    public boolean set
+    
 }

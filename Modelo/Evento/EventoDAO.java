@@ -4,40 +4,49 @@
  */
 package Modelo.Evento;
 
-import Modelo.DAO.DAO;
+import Modelo.DAO.DAOCUD;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  *
  * @author Student
  */
-public class EventoDAO extends DAO <EventoDTO>{
+public class EventoDAO extends DAOCUD <EventoDTO>{
 
     @Override
-    public boolean create(EventoDTO dto) throws SQLException {
-        stmt = connection.prepareStatement("Call InsertarEvento");
-                return true;
-    }
-
-    @Override
-    public boolean read(Object id) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public EventoDTO read(Object id) throws SQLException {
+        stmt = connection.prepareStatement("Call EventosRead()");
+        stmt.setInt(1, Integer.parseInt(String.valueOf(id)));
+        rs = stmt.executeQuery();
+        if (rs.next()) {
+            return new EventoDTO(
+                    rs.getInt(1),
+                    rs.getString(2),
+                    rs.getDate(3),
+                    rs.getString(4),
+                    rs.getInt(5)
+            );
+        }
+        return null;
     }
 
     @Override
     public List<EventoDTO> readAll() throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        stmt = connection.prepareStatement("Call EventosReadAll()");
+        rs = stmt.executeQuery();
+        List<EventoDTO> dtos = new ArrayList();
+        while(rs.next()){
+            dtos.add(new EventoDTO(
+                    rs.getInt(1),
+                    rs.getString(2),
+                    rs.getDate(3),
+                    rs.getString(4),
+                    rs.getInt(5)
+            ));
+        }
+        return dtos;
     }
 
-    @Override
-    public boolean Update(EventoDTO dto) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public boolean Delete(Object id) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-    
 }
