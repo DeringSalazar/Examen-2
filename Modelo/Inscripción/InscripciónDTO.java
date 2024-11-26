@@ -4,18 +4,16 @@
  */
 package Modelo.Inscripción;
 
-import Modelo.Asistente.Asistente;
-import Modelo.Evento.Evento;
 import java.sql.Date;
 
 public class InscripciónDTO {
     int id;
-    Evento evento;
-    Asistente asistente;
+    private String evento;
+    private String asistente;
     Date fecha;
     boolean asistencia;
 
-    public InscripciónDTO(int id, Evento evento, Asistente asistente, Date fecha, boolean asistencia) {
+    public InscripciónDTO(int id, String evento, String asistente, Date fecha, boolean asistencia) {
         this.id = id;
         this.evento = evento;
         this.asistente = asistente;
@@ -27,11 +25,11 @@ public class InscripciónDTO {
         return id;
     }
 
-    public Evento getEvento() {
+    public String getEvento() {
         return evento;
     }
 
-    public Asistente getAsistente() {
+    public String getAsistente() {
         return asistente;
     }
 

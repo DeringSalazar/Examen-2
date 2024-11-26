@@ -21,7 +21,7 @@ public abstract class DAO<Dto> {
     }
     
     public abstract boolean create(Dto dto) throws SQLException;
-    public abstract boolean read(Object id) throws SQLException;
+    public abstract Dto read(Object id) throws SQLException;
     public abstract List<Dto> readAll() throws SQLException;
     public abstract boolean Update(Dto dto) throws SQLException;
     public abstract boolean Delete(Object id) throws SQLException;
