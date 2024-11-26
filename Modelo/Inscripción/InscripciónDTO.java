@@ -6,7 +6,7 @@ package Modelo.Inscripción;
 
 import Modelo.Asistente.Asistente;
 import Modelo.Evento.Evento;
-import java.util.Date;
+import java.sql.Date;
 
 public class InscripciónDTO {
     int id;
